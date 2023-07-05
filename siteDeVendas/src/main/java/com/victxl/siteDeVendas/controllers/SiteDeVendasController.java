@@ -19,11 +19,12 @@ public class SiteDeVendasController {
     @Autowired
     private VendaRepository vr;
 
-
     @RequestMapping ("/")
     public String index() {
         return "index";
     }
-
-
+    @RequestMapping ("/privado")
+    public String privado() {
+        return "privado";
+    }
 }
