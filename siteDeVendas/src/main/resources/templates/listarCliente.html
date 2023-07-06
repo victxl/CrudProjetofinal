@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Cliente</title>
+
+    <!-- css bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- meu css -->
+    
+
+    <!-- favicon -->
+    
+  </head>
+  <body data-bs-theme="dark">
+    <!-- header -->
+    
+
+    <!-- main -->
+    <main>
+        <div class="container mt-100">
+            <h1>Lista de Cliente</h1>
+            <hr />
+            <div class="row mt-5 mb-5">
+                <div class="col-12 col-md-4 mb-5" th:each="cliente : ${clientes}">
+                    <h3><span th:text="${cliente.nome}"></span></h3>
+                    <hr />
+                    <p><b>Código do cliente: </b><span th:text="${cliente.codigoCliente}"></span></p>
+                    <p><b>CPF: </b><span th:text="${cliente.cpf}"></span></p>
+                    <p><b>Email: </b><span th:text="${cliente.email}"></span></p>
+                    <p><b>telefone: </b><span th:text="${cliente.telefone}"></span></p>
+                    <p><b>tipo cliente: </b><span th:text="${cliente.tipoCliente}"></span></p>
+                    
+
+                    <!-- botões de alterar e excluir -->
+                    <div class="row mb-5">
+                      <!-- botão alterar -->
+                      <div class="col-4">
+                        <a class="btn btn-primary" th:href="${(#mvc.url('FC#formAlterarCliente').arg(0, cliente.codigoCliente).build())}" role="button">Alterar</a>
+                      </div>
+                      
+                      <!-- botão excluir -->
+                      <div class="col-4">
+                        <a class="btn btn-danger" th:href="${(#mvc.url('FC#excluirCliente').arg(0, cliente.codigoCliente)).build()}" role="button">Excluir</a>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer -->
+    
+    
+    <!-- js bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  </body>
+</html>
