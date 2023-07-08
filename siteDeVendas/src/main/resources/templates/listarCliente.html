@@ -17,6 +17,30 @@
   <body data-bs-theme="dark">
     <!-- header -->
     
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #3b3b3b;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cadastroCliente">Cadastro Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cadastroVendedor">Cadastro Vendedor</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/listarCliente">Lista Cliente</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    
 
     <!-- main -->
     <main>
@@ -24,27 +48,35 @@
             <h1>Lista de Cliente</h1>
             <hr />
             <div class="row mt-5 mb-5">
-                <div class="col-12 col-md-4 mb-5" th:each="cliente : ${clientes}">
-                    <h3><span th:text="${cliente.nome}"></span></h3>
+            	
+            	
+            	
+                <div class="col-12 col-md-4 mb-5" th:each="clientes : ${cliente}">
+    				<h3><span th:text="${clientes.nome}"></span></h3>
                     <hr />
-                    <p><b>Código do cliente: </b><span th:text="${cliente.codigoCliente}"></span></p>
-                    <p><b>CPF: </b><span th:text="${cliente.cpf}"></span></p>
-                    <p><b>Email: </b><span th:text="${cliente.email}"></span></p>
-                    <p><b>telefone: </b><span th:text="${cliente.telefone}"></span></p>
-                    <p><b>tipo cliente: </b><span th:text="${cliente.tipoCliente}"></span></p>
+                    <p><b>Código do cliente: </b><span th:text="${clientes.idCliente}"></span></p>
+                    <p><b>CPF: </b><span th:text="${clientes.cpf}"></span></p>
+                    <p><b>Email: </b><span th:text="${clientes.email}"></span></p>
+                    <p><b>telefone: </b><span th:text="${clientes.telefone}"></span></p>
+                    <p><b>tipo cliente: </b><span th:text="${clientes.tipoCliente}"></span></p>
+                    <p><b>Cep: </b><span th:text="${clientes.endereco.cep}"></span></p>
+                    <p><b>CPF: </b><span th:text="${clientes.cpf}"></span></p>
+                    <p><b>Logradouro: </b><span th:text="${clientes.endereco.logradouro}"></span></p>
+                    <p><b>Bairro: </b><span th:text="${clientes.endereco.bairro}"></span></p>
+                    
                     
 
-                    <!-- botões de alterar e excluir -->
-                    <div class="row mb-5">
-                      <!-- botão alterar -->
+                    
+                     <div class="row mb-5">
+                    
                       <div class="col-4">
-                        <a class="btn btn-primary" th:href="${(#mvc.url('FC#formAlterarCliente').arg(0, cliente.codigoCliente).build())}" role="button">Alterar</a>
+                        <a class="btn btn-primary" th:href="${(#mvc.url('SDVC#alterarCliente').arg(0, cliente.idCliente).build())}" role="button">Alterar</a>
                       </div>
                       
-                      <!-- botão excluir -->
+                      <!--
                       <div class="col-4">
                         <a class="btn btn-danger" th:href="${(#mvc.url('FC#excluirCliente').arg(0, cliente.codigoCliente)).build()}" role="button">Excluir</a>
-                      </div>
+                      </div> -->
 
                     </div>
                 </div>
