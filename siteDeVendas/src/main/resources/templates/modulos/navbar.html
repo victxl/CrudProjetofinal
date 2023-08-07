@@ -5,28 +5,32 @@
       aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-        <li th:class="${currentPage == 'home'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/cadastroVenda">Vendas <span class="visually-hidden">(current)</span></a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Cliente</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cadastroCliente">Cadastro Cliente</a></li>
+            <li><a class="dropdown-item" href="/listarCliente">Listar Cliente</a></li>
+          </ul>
         </li>
-        <li th:class="${currentPage == 'cadastroCliente'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/cadastroCliente">Cadastro Cliente</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Vendedor</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cadastroVendedor">Cadastro Vendedor</a></li>
+            <li><a class="dropdown-item" href="/listarVendedor">Listar Vendedor</a></li>
+          </ul>
         </li>
-        <li th:class="${currentPage == 'cadastroVendedor'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/cadastroVendedor">Cadastro Vendedor</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Produto</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cadastroProduto">Cadastro Produto</a></li>
+            <li><a class="dropdown-item" href="/listarProduto">Listar Produto</a></li>
+          </ul>
         </li>
-        <li th:class="${currentPage == 'listarVendedor'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/listarVendedor">Listar Vendedor</a>
-        </li>
-        <li th:class="${currentPage == 'cadastroProduto'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/cadastroProduto">Cadastro Produto</a>
-        </li>
-        <li th:class="${currentPage == 'listarCliente'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/listarCliente">Lista Cliente</a>
-        </li>
-        <li th:class="${currentPage == 'listarProduto'} ? 'nav-item active' : 'nav-item'">
-          <a class="nav-link" href="/listarProduto">Lista Produtos</a>
-        </li>
-        
+
       </ul>
     </div>
   </nav>
