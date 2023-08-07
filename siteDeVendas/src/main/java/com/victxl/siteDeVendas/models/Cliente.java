@@ -15,16 +15,24 @@ public class Cliente implements Serializable {
     private String nome;
     private String email;
     private String telefone;
-    private String tipoCliente;
-    private String cnpj;
+
+
     private String cpf;
 
 
     @ManyToOne
-    @JoinColumn (name = "endereco_idEndereco",nullable = false)
+    @JoinColumn (name = "endereco_idEndereco")
     private Endereco endereco;
     //Getters and setters
 
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
 
     public String getNome() {
         return nome;
@@ -50,22 +58,6 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -80,13 +72,5 @@ public class Cliente implements Serializable {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Long getIdCliente() {
-        return idCliente;
     }
 }

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Venda produto</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<header>
+    <!-- place navbar here -->
+    <div th:include="modulos/navbar :: navbar" th:with="currentPage='cadastroCliente'"></div>
+</header>
+<main>
+
+
+    <div class="container mt-5 row g-3 text-info bg-azul shadow p-3 mb-5 rounded">
+
+        <h2>Cadastro de Vendas</h2>
+        <form action="/cadastroVenda" method="POST">
+
+
+<!--            <div class="form-group">-->
+<!--                <label for="cliente">Cliente</label>-->
+<!--                <select class="form-control" id="cliente" name="cliente" required>-->
+
+<!--                    <option th:each="cliente : ${clientes}" th:text="${cliente.nome}"></option>-->
+
+<!--                </select>-->
+<!--            </div>-->
+            <div class="form-group">
+                <label for="produto">Produto</label>
+                <select class="form-control" id="produto" name="produto" required>
+                    <option th:each="produto : ${produtos}"  th:text="${produto.nome}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+
+                <p class="help-block">Quantidade disponível em estoque: <span id="quantidadeEstoque"></span></p>
+            </div>
+
+            <div class="col-md-4">
+                <label for="dataCadastro"><h5>Data de venda</h5></label>
+                <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" >
+            </div>
+
+            <div class="col-md-4">
+                <label for="valor"><h5>Valor R$</h5></label>
+                <input type="number" step="0.01" class="form-control" id="valor" name="valor" >
+            </div>
+            <div class="col-md-4">
+                <label for="valor"><h5>Endereço </h5></label>
+                <input type="text" step="0.01" class="form-control" id="endereco" name="endereco" >
+            </div>
+
+
+            <button type="submit" class="btn btn-primary mt-2">Vender</button>
+        </form>
+
+    </div>
+
+</main>
+<footer>
+    <!-- place footer here -->
+    <div th:include="modulos/footer :: footer"></div>
+</footer>
+<!-- Bootstrap JavaScript Libraries -->
+
+<script>
+    document.getElementById("produto").addEventListener("change", function () {
+        var selectedProductId = this.value;
+        var selectedProduct = null;
+
+        // Encontre o produto selecionado nos produtos disponíveis
+        for (var i = 0; i < produtos.length; i++) {
+            if (produtos[i].id == selectedProductId) {
+                selectedProduct = produtos[i];
+                break;
+            }
+        }
+
+        if (selectedProduct) {
+            // Atualize a quantidade de estoque exibida
+            document.getElementById("quantidadeEstoque").textContent = selectedProduct.quantidadeEstoque;
+        } else {
+            document.getElementById("quantidadeEstoque").textContent = "Produto não encontrado";
+        }
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="/script.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+</body>
+
+</html>

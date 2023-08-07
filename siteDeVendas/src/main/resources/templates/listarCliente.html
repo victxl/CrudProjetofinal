@@ -1,94 +1,254 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de Cliente</title>
 
     <!-- css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- meu css -->
-    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <!-- favicon -->
-    
-  </head>
-  <body data-bs-theme="dark">
-    <!-- header -->
-    
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #3b3b3b;">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cadastroCliente">Cadastro Cliente</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cadastroVendedor">Cadastro Vendedor</a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="/listarCliente">Lista Cliente</a>
-                </li>
 
-            </ul>
+</head>
 
-        </div>
-    </nav>
-    
+<body>
+<!-- header -->
+<div th:include="modulos/navbar :: navbar"></div>
 
-    <!-- main -->
-    <main>
-        <div class="container mt-100">
-            <h1>Lista de Cliente</h1>
-            <hr />
-            <div class="row mt-5 mb-5">
-            	
-            	
-            	
-                <div class="col-12 col-md-4 mb-5" th:each="clientes : ${cliente}">
-    				<h3><span th:text="${clientes.nome}"></span></h3>
-                    <hr />
-                    <p><b>Código do cliente: </b><span th:text="${clientes.idCliente}"></span></p>
-                    <p><b>CPF: </b><span th:text="${clientes.cpf}"></span></p>
-                    <p><b>Email: </b><span th:text="${clientes.email}"></span></p>
-                    <p><b>telefone: </b><span th:text="${clientes.telefone}"></span></p>
-                    <p><b>tipo cliente: </b><span th:text="${clientes.tipoCliente}"></span></p>
-                    <p><b>Cep: </b><span th:text="${clientes.endereco.cep}"></span></p>
-                    <p><b>CPF: </b><span th:text="${clientes.cpf}"></span></p>
-                    <p><b>Logradouro: </b><span th:text="${clientes.endereco.logradouro}"></span></p>
-                    <p><b>Bairro: </b><span th:text="${clientes.endereco.bairro}"></span></p>
-                    
-                    
+<!-- main -->
+<main>
 
-                    
-                     <div class="row mb-5">
-                    
-                      <div class="col-4">
-                        <a class="btn btn-primary" th:href="${(#mvc.url('SDVC#alterarCliente').arg(0, cliente.idCliente).build())}" role="button">Alterar</a>
-                      </div>
-                      
-                      <!--
-                      <div class="col-4">
-                        <a class="btn btn-danger" th:href="${(#mvc.url('FC#excluirCliente').arg(0, cliente.codigoCliente)).build()}" role="button">Excluir</a>
-                      </div> -->
 
+    <div class="container">
+        <h1 class="text-center text-info container">Lista de Cliente </h1>
+        <hr/>
+
+
+        <hr>
+
+        <div class="container row  shadow p-3 mb-5 bg-body-tertiary rounded bg-azul">
+            <div th:each="cliente : ${clientes}"
+                 class="col-12 col-sm-6 col-md-4 shadow p-3 mb-5  rounded   text-primary container ">
+                <div class="card d-flex">
+                    <div class="card-body  lh-1">
+                        <p class="card-title fs-5 fw-bold" th:text="${cliente.nome}"></p>
+                        <p class="card-text"><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+                        <p class="card-text"><strong>Telefone:</strong> <span th:text="${cliente.telefone}"></span></p>
+
+                        <p class="card-text"><strong>CPF:</strong> <span th:text="${cliente.cpf}"></span></p>
+
+                        <p class="card-text"><strong>CEP:</strong> <span th:text="${cliente.endereco.cep}"></span>
+                        </p>
+                        <p class="card-text"><strong>Endereço:</strong> <span
+                                th:text="${cliente.endereco.logradouro}"></span></p>
+                        <p class="card-text"><strong>Complemento:</strong> <span
+                                th:text="${cliente.endereco.complemento}"></span></p>
+                        <p class="card-text"><strong>Número:</strong> <span
+                                th:text="${cliente.endereco.numero}"></span></p>
+                        <p class="card-text"><strong>Bairro:</strong> <span
+                                th:text="${cliente.endereco.bairro}"></span></p>
+                        <p class="card-text"><strong>Cidade:</strong> <span
+                                th:text="${cliente.endereco.cidade}"></span></p>
+                        <p class="card-text"><strong>Estado:</strong> <span
+                                th:text="${cliente.endereco.estado}"></span></p>
+                        <a class="btn btn-primary  " data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                           th:href="${(#mvc.url('SDVC#formAlterarCliente').arg(0, cliente.idCliente).build())}"
+                           role="button"><i class="bi bi-pencil-square"></i></a>
+
+
+                        <a alt="Excluir" class="btn btn-danger ms-2" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="Excluir"
+                           th:href="${(#mvc.url('SDVC#excluirCliente').arg(0, cliente.idCliente)).build()}"
+                           role="button"><i class="bi bi-trash3-fill"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- footer -->
-    
-    
-    <!-- js bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <!-- <div class="row ">
+            <div class="col-8">          <div
+                    class="row mt-5 mb-5 table-responsive bg-primary-subtle border border-primary-subtle rounded-3 ">
 
-  </body>
+
+                    <table class="table table-striped table-hover  table-sm align-middle  ">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">e-mail</th>
+                                <th scope="col">TELEFONE</th>
+                                <th scope="col">TIPOPESSOA</th>
+
+                                <th scope="col">CPF</th>
+
+
+                                <th scope="col">CNPJ</th>
+
+                                <th scope="col">CEP</th>
+                                <th scope="col">ENDEREÇO</th>
+                                <th scope="col">COMPLEMENTO</th>
+                                <th scope="col">Nº</th>
+                                <th scope="col">BAIRRO</th>
+                                <th scope="col">CIDADE</th>
+                                <th scope="col">ESTADO</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr th:each="cliente : ${clientes}">
+                                <td class="nowrap"><span th:text="${cliente.idCliente}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.nome}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.email}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.telefone}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.tipoCliente}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.cpf}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.cnpj}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.cep}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.logradouro}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.complemento}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.numero}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.bairro}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.cidade}"></span></td>
+                                <td class="nowrap"><span th:text="${cliente.endereco.estado}"></span></td>
+
+
+                                <td>
+                                    <div class="col-4">
+                                        <a class="btn btn-primary " data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Editar"
+                                            th:href="${(#mvc.url('SDVC#formalterarCliente').arg(0, cliente.idCliente).build())}"
+                                            role="button">
+
+                                            <i class="bi bi-pencil-square"></i>
+
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-4">
+                                        <a alt="Excluir" class="btn btn-danger" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Excluir"
+                                            th:href="${(#mvc.url('SDVC#excluirCliente').arg(0, cliente.idCliente)).build()}"
+                                            role="button"><i class="bi bi-trash3-fill"></i></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-4">
+                                        <a class="btn btn-primary"
+                                            th:href="${(#mvc.url('SDVC#duplicarCliente').arg(0, cliente.idCliente).build())}"
+                                            role="button">Duplicar</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+
+
+
+
+
+
+
+
+
+
+                    </table>
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-3"><div
+                class="row mt-5 mb-5 table-responsive bg-primary-subtle border border-primary-subtle rounded-3 ">
+
+
+                <table class="table table-striped table-hover  table-sm align-middle  ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Edite</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Duplicar</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr th:each="cliente : ${clientes}">
+
+
+                            <td>
+                                <div class="col-4">
+                                    <a class="btn btn-primary " data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Editar"
+                                        th:href="${(#mvc.url('SDVC#formalterarCliente').arg(0, cliente.idCliente).build())}"
+                                        role="button">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-4">
+                                    <a alt="Excluir" class="btn btn-danger" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Excluir"
+                                        th:href="${(#mvc.url('SDVC#excluirCliente').arg(0, cliente.idCliente)).build()}"
+                                        role="button"><i class="bi bi-trash3-fill"></i></a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-4">
+                                    <a class="btn btn-primary"
+                                        th:href="${(#mvc.url('SDVC#duplicarCliente').arg(0, cliente.idCliente).build())}"
+                                        role="button">Du</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+
+
+
+
+
+
+
+
+
+
+                </table>
+
+
+
+
+            </div></div>
+        </div> -->
+    </div>
+</main>
+
+<!-- footer -->
+<div th:include="modulos/footer :: footer"></div>
+
+
+<!-- js bootstrap -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script src="/script.js"></script>
+
+</body>
+
 </html>

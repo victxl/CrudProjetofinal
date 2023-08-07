@@ -26,31 +26,29 @@
             <div class="row g-3 text-info bg-azul shadow p-3 mb-5 rounded">
                 <div class="col-md-6">
                     <label for="nome"><h5>Nome</h5></label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
+                    <input type="text" class="form-control" id="nome" name="nome" th:value="${produto.nome}"  required>
                 </div>
 
                 <div class="col-md-6">
                     <label for="descricao"><h5>Descrição</h5></label>
-                    <input type="text" class="form-control" id="descricao" name="descricao" required>
+                    <input type="text" class="form-control" id="descricao" name="descricao" th:value="${produto.descricao} "required>
                 </div>
 
-                <div class="col-md-2">
-                    <label for="quantidadeEstoque"><h5>Estoque</h5></label>
-                    <input type="number" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque" required>
+                <div class="col-md-4">
+                    <label for="quantidadeEstoque"><h5>Quantidade em Estoque</h5></label>
+                    <input type="number" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque" th:value="${produto.quantidadeEstoque}" required>
                 </div>
 
                 <div class="col-md-4">
                     <label for="dataCadastro"><h5>Data de Cadastro</h5></label>
-                    <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" >
+                    <input type="date" class="form-control" id="dataCadastro" name="dataCadastro"  th:value="${produto.dataCadastro}">
                 </div>
-
+                <div class="col-md-4">
+                    <label for="valor"><h5>Valor R$</h5></label>
+                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" th:value="${produto.valor}" required>
+                </div>
 
                 <div class="col-md-4">
-                    <label for="valor"><h5>Valor</h5></label>
-                    <input type="number" step="0.01" class="form-control" id="valor" name="valor" required>
-                </div>
-
-                <div class="col-md-2">
                     <label for="ativo"><h5>Ativo</h5></label>
                     <select class="form-select" id="ativo" name="ativo" required>
                         <option value="true">Sim</option>

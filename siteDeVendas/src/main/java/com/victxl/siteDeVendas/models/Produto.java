@@ -3,6 +3,7 @@ package com.victxl.siteDeVendas.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,10 +16,10 @@ public class Produto implements Serializable {
     private String nome;
     private String descricao;
     private int quantidadeEstoque;
-    private Date dataCadastro;
-    private String categoria;
-    private String marca;
-    private String imagem;
+    private LocalDate dataCadastro;
+
+
+
     private boolean ativo;
     private double valor;
 
@@ -42,15 +43,18 @@ public class Produto implements Serializable {
         this.nome = nome;
         this.descricao = descricao;
         this.quantidadeEstoque = quantidadeEstoque;
-        this.dataCadastro = dataCadastro;
-        this.categoria = categoria;
-        this.marca = marca;
-        this.imagem = imagem;
+
+
+
         this.ativo = ativo;
         this.valor = valor;
         this.vendaCliente = vendaCliente;
         this.vendaClienteEndereco = vendaClienteEndereco;
         this.vendaVendedor = vendaVendedor;
+    }
+
+    public Produto() {
+
     }
 
     public Long getIdProduto() {
@@ -85,37 +89,14 @@ public class Produto implements Serializable {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public Date getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
 
     public boolean isAtivo() {
         return ativo;
